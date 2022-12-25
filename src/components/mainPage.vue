@@ -46,10 +46,12 @@ export default {
   },
   created() {
     this.getPhotosNames();
+    window.onload = this.getHeight;
+    addEventListener("resize", () => {
+      this.getHeight();
+    })
   },
-  beforeUpdate() {
-    this.getHeight();
-  }
+
 };
 </script>
 

@@ -1,10 +1,7 @@
 <template>
   <div class="video-div">
     <video class="video" controls>
-      <source
-        src="@/assets/carousel-videos/the-fool-zone.mp4"
-        type="video/mp4"
-      />
+      <source src="@/assets/carousel-videos/test.mp4" type="video/mp4" />
     </video>
   </div>
 </template>
@@ -12,7 +9,6 @@
 <script>
 export default {
   name: "videoCarousel",
-
 };
 </script>
 

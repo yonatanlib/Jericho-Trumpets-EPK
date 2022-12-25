@@ -11,10 +11,10 @@
         v-for="photoName in photosList"
         :key="photoName"
       >
-        <v-img
+        <img
           class="img"
           :src="require('@/assets/carousel-photos/' + photoName)"
-        ></v-img>
+        />
       </v-carousel-item>
     </v-carousel>
   </div>
