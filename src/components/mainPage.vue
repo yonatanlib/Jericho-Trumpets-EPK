@@ -37,10 +37,19 @@ export default {
         return element.split("/")[1];
       });
     },
+    getHeight() {
+      const photoCarouselElement = document.querySelector(".photo-carousel");
+      console.log(photoCarouselElement)
+      const height = photoCarouselElement.offsetHeight;
+      document.querySelector(".video-div").style.height = `${height}px`;
+    },
   },
   created() {
     this.getPhotosNames();
   },
+  beforeUpdate() {
+    this.getHeight();
+  }
 };
 </script>
 
@@ -72,5 +81,4 @@ export default {
 .photo-carousel {
   height: fit-content;
 }
-
 </style>

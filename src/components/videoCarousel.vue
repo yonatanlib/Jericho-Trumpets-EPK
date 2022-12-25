@@ -12,16 +12,16 @@
 <script>
 export default {
   name: "videoCarousel",
+
 };
 </script>
 
 <style scoped>
 .video-div {
-  height: 400px;
-  width: 100px;
+  height: fit-content;
 }
 .video {
- height: 100%;
+  height: 100%;
   width: 100%;
 }
 </style>
