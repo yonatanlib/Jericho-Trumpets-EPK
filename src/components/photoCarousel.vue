@@ -1,22 +1,25 @@
 <template>
-  <div class="carousel-div">
-    <v-carousel
-      class="carousel"
-      hide-delimiters
-      interval="4000"
-      show-arrows-on-hover
-    >
-      <v-carousel-item
+  <div class="carousel-wrapper">
+    <p class="media-title">Photos</p>
+    <div class="photo-carousel-div">
+      <v-carousel
         class="carousel"
-        v-for="photoName in photosList"
-        :key="photoName"
+        hide-delimiters
+        interval="4000"
+        show-arrows-on-hover
       >
-        <img
-          class="img"
-          :src="require('@/assets/carousel-photos/' + photoName)"
-        />
-      </v-carousel-item>
-    </v-carousel>
+        <v-carousel-item
+          class="carousel"
+          v-for="photoName in photosList"
+          :key="photoName"
+        >
+          <img
+            class="img"
+            :src="require('@/assets/carousel-photos/' + photoName)"
+          />
+        </v-carousel-item>
+      </v-carousel>
+    </div>
   </div>
 </template>
 
@@ -32,8 +35,9 @@ export default {
 </script>
 
 <style>
-.carousel-div {
+.photo-carousel-div {
   padding: 1rem;
+  border: 1px solid white;
 }
 .img {
   width: 100%;
@@ -50,5 +54,14 @@ export default {
 }
 .v-image {
   height: auto !important;
+}
+.carousel-wrapper {
+  text-align: center;
+}
+.photos-title {
+  font-family: "helvetica";
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0px !important;
 }
 </style>

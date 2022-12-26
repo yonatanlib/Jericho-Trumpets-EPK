@@ -3,6 +3,18 @@
     <div class="main-title-div">
       <main-title />
     </div>
+    <div class="icons">
+      <v-tooltip v-for="icon of icons" :key="icon" bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <a :href="icon.link">
+            <v-icon v-bind="attrs" v-on="on" color="white">{{
+              icon.name
+            }}</v-icon>
+          </a>
+        </template>
+            <span>{{ icon.tooltip }}</span>
+      </v-tooltip>
+    </div>
     <div class="media-div">
       <photo-carousel
         class="media-item photo-carousel"
@@ -27,6 +39,33 @@ export default {
   data() {
     return {
       photosList: [],
+      icons: [
+        {
+          name: "mdi-instagram",
+          link: "https://www.instagram.com/jerichotrumpets/",
+          tooltip: "Instagram",
+        },
+        {
+          name: "mdi-facebook",
+          link: "https://www.facebook.com/JerichoTrumpets",
+          tooltip: "Facebook",
+        },
+        {
+          name: "mdi-youtube",
+          link: "https://www.youtube.com/@jerichotrumpets846",
+          tooltip: "Youtube",
+        },
+        {
+          name: "mdi-spotify",
+          link: "https://open.spotify.com/artist/0YtZ6bwiUFoW5QUwtqo11Z",
+          tooltip: "Spotify",
+        },
+        {
+          name: "mdi-apple",
+          link: "https://music.apple.com/us/artist/jericho-trumpets/1559074152",
+          tooltip: "Apple Music",
+        },
+      ],
     };
   },
   methods: {
@@ -38,8 +77,8 @@ export default {
       });
     },
     getHeight() {
-      const photoCarouselElement = document.querySelector(".photo-carousel");
-      console.log(photoCarouselElement)
+      const photoCarouselElement = document.querySelector(".photo-carousel-div");
+      console.log(photoCarouselElement);
       const height = photoCarouselElement.offsetHeight;
       document.querySelector(".video-div").style.height = `${height}px`;
     },
@@ -49,38 +88,50 @@ export default {
     window.onload = this.getHeight;
     addEventListener("resize", () => {
       this.getHeight();
-    })
+    });
   },
-
 };
 </script>
 
-<style scoped>
+<style>
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  /* gap: 2rem; */
 }
 .main-title-div {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.media-div {
+.icons {
+  /* margin-block-end: 2rem; */
+  display: flex;
+  gap: 0.5rem;
+}
+.media-div  {
   display: flex;
   width: 80%;
   justify-content: space-between;
   flex-grow: 1;
 }
-.media-div * {
-  border: 1px solid white;
+.media-title {
+  font-family: "helvetica";
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0px !important;
 }
 .media-item {
   width: 45%;
 }
 .photo-carousel {
   height: fit-content;
+}
+a {
+  color: inherit !important;
 }
 </style>

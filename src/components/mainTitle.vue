@@ -17,5 +17,7 @@ export default Vue.extend({
   font-family: 'helvetica';
   font-weight: bold;
   font-size: 6rem;
+  line-height: 6rem;
+  margin-bottom: 0px !important;
 }
 </style>
