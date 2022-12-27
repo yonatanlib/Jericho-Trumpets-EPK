@@ -1,34 +1,26 @@
 <template>
-  <div class="media-player-div">
-    <div class="media-player-content">
-      <img class="album-cover-img" src="@/assets/images/cover.jpg" alt="" />
-      <div class="song-details">
-        <p class="band-title">Jericho Trumpets</p>
-        <span class="dash">-</span>
-        <p class="song-title">{{ currentSong.name }}</p>
-      </div>
-      <div class="controls">
-        <v-btn @click="prev" icon>
-          <v-icon x-large>mdi-rewind</v-icon>
-        </v-btn>
-        <v-btn v-if="!playing" @click="playSong" icon>
-          <v-icon x-large>mdi-play</v-icon>
-        </v-btn>
-        <v-btn v-else @click="pause" icon>
-          <v-icon x-large>mdi-pause</v-icon>
-        </v-btn>
-        <v-btn @click="next" icon>
-          <v-icon x-large>mdi-fast-forward</v-icon>
-        </v-btn>
-      </div>
+  <div>
+    <div class="controls">
+      <v-btn @click="prev" icon>
+        <v-icon x-large>mdi-rewind</v-icon>
+      </v-btn>
+      <v-btn v-if="!playing" @click="playSong" icon>
+        <v-icon x-large>mdi-play</v-icon>
+      </v-btn>
+      <v-btn v-else @click="pause" icon>
+        <v-icon x-large>mdi-pause</v-icon>
+      </v-btn>
+      <v-btn @click="next" icon>
+        <v-icon x-large>mdi-fast-forward</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "mediaPlayer",
-  data() {
+  name: "mediaControls",
+   data() {
     return {
       currentSong: {
         name: undefined,
@@ -40,14 +32,13 @@ export default {
       songStartTime: undefined,
     };
   },
-  computed: {},
   methods: {
-    getSongList() {
-      const songsFolder = require.context("@/assets/Songs");
+      getSongList() {
+      const songsFolder = require.context("../../assets/Songs");
       this.songArray = songsFolder.keys().map((songDir) => {
         let songName = songDir.split("/")[1];
         songName = songName.split(".")[0];
-        const AudioFilePath = require("../assets/Songs/" + songName + ".mp3");
+        const AudioFilePath = require("../../assets/Songs/" + songName + ".mp3");
         return {
           name: songName,
           audioFile: new Audio(AudioFilePath),
@@ -103,54 +94,11 @@ export default {
   created() {
     this.getSongList();
   },
+  
 };
 </script>
 
 <style>
-.media-player-div {
-  height: 7rem;
-  width: 55%;
-  background-color: lightgray;
-  border: 3px solid grey;
-  /* border-top-left-radius: 20px; */
-  border-top-right-radius: 20px;
-}
-.song-details {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.song-details p {
-  margin-bottom: 0 !important;
-  color: black !important;
-  font-family: "helvetica";
-}
-.media-player-content {
-  /* width: 90%; */
-  height: 7rem;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.album-cover-img {
-  margin-inline-end: 1.5rem;
-  height: 7rem;
-  width: 7rem;
-}
-.band-title {
-  font-size: 1.5rem;
-
-  font-weight: bold;
-  /* margin-inline-end: 1rem; */
-}
-.dash {
-  font-size: 2rem;
-  /* margin-inline-end: 1rem; */
-}
-.song-title {
-  font-size: 1.2rem;
-}
 .controls {
   width: 10rem;
   margin-inline-end: 1rem;

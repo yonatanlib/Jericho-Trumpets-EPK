@@ -4,7 +4,7 @@
       <main-title />
     </div>
     <div class="icons">
-      <v-tooltip v-for="icon of icons" :key="icon" bottom>
+      <v-tooltip v-for="icon of icons" :key="icon.name" bottom>
         <template v-slot:activator="{ on, attrs }">
           <a :href="icon.link">
             <v-icon v-bind="attrs" v-on="on" color="white">{{
@@ -12,7 +12,7 @@
             }}</v-icon>
           </a>
         </template>
-            <span>{{ icon.tooltip }}</span>
+        <span>{{ icon.tooltip }}</span>
       </v-tooltip>
     </div>
     <div class="media-div">
@@ -29,12 +29,12 @@
 
 <script>
 import mainTitle from "./mainTitle.vue";
-import MediaPlayer from "./mediaPlayer.vue";
+import MediaPlayer from "./mediaPlayer/mediaPlayerDesktop.vue";
 // import Bio from "./Bio.vue";
 import PhotoCarousel from "./photoCarousel.vue";
 import VideoCarousel from "./videoCarousel.vue";
 export default {
-  components: { mainTitle, PhotoCarousel, VideoCarousel, MediaPlayer },
+  components: { mainTitle, PhotoCarousel, VideoCarousel, MediaPlayer  },
   name: "mainPage",
   data() {
     return {
@@ -77,8 +77,9 @@ export default {
       });
     },
     getHeight() {
-      const photoCarouselElement = document.querySelector(".photo-carousel-div");
-      console.log(photoCarouselElement);
+      const photoCarouselElement = document.querySelector(
+        ".photo-carousel-div"
+      );
       const height = photoCarouselElement.offsetHeight;
       document.querySelector(".video-div").style.height = `${height}px`;
     },
@@ -99,7 +100,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  /* gap: 2rem; */
+  width: 100%;
 }
 .main-title-div {
   width: 100%;
@@ -113,11 +114,16 @@ export default {
   display: flex;
   gap: 0.5rem;
 }
-.media-div  {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-  flex-grow: 1;
+@media only screen and (min-width: 600px) {
+  .media-div {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  .media-item {
+    width: 45%;
+  }
 }
 .media-title {
   font-family: "helvetica";
@@ -125,13 +131,36 @@ export default {
   font-weight: bold;
   margin-bottom: 0px !important;
 }
-.media-item {
-  width: 45%;
-}
+
 .photo-carousel {
   height: fit-content;
 }
 a {
   color: inherit !important;
+}
+</style>
+<style>
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 1rem !important;
+    background-color: black; 
+    height: 100vh !important;
+  }
+  .page {
+    height: 100vh !important;
+  }
+  .main-title {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  .media-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+  }
+  .icons {
+    margin-block-end: 1rem;
+  }
 }
 </style>
