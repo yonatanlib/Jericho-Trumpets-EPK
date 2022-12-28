@@ -17,10 +17,19 @@ export default {
 </script>
 
 <style>
-#app {
-  background-color: black !important;
-}
 p {
   color: white !important;
 }
+*, ::before, ::after {
+    box-sizing: content-box !important;
+}
+@media only screen and (max-width: 600px) {
+  *, ::before, ::after {
+    box-sizing: border-box !important;
+}
+}
+.theme--light.v-application {
+  background-color: black !important;
+}
+
 </style>

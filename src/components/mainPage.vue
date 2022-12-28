@@ -22,19 +22,20 @@
       />
       <video-carousel class="media-item" />
     </div>
-    <media-player class="media-player" />
+    <media-player-desktop v-if="!isMobile" class="media-player" />
+    <media-player-phone v-else />
     <!-- <bio /> -->
   </div>
 </template>
 
 <script>
 import mainTitle from "./mainTitle.vue";
-import MediaPlayer from "./mediaPlayer/mediaPlayerDesktop.vue";
-// import Bio from "./Bio.vue";
+import MediaPlayerDesktop from "./mediaPlayer/mediaPlayerDesktop.vue";
+import MediaPlayerPhone from './mediaPlayer/mediaPlayerPhone.vue';
 import PhotoCarousel from "./photoCarousel.vue";
 import VideoCarousel from "./videoCarousel.vue";
 export default {
-  components: { mainTitle, PhotoCarousel, VideoCarousel, MediaPlayer  },
+  components: { mainTitle, PhotoCarousel, VideoCarousel, MediaPlayerDesktop, MediaPlayerPhone },
   name: "mainPage",
   data() {
     return {
@@ -84,6 +85,11 @@ export default {
       document.querySelector(".video-div").style.height = `${height}px`;
     },
   },
+  computed: {
+    isMobile() {
+      return window.innerWidth < 600;
+    },
+  },
   created() {
     this.getPhotosNames();
     window.onload = this.getHeight;
@@ -118,6 +124,7 @@ export default {
   .media-div {
     display: flex;
     width: 80%;
+    height: fit-content;
     justify-content: space-between;
     flex-grow: 1;
   }
@@ -143,11 +150,11 @@ a {
 @media only screen and (max-width: 600px) {
   body {
     padding: 1rem !important;
-    background-color: black; 
+    background-color: black;
     height: 100vh !important;
   }
   .page {
-    height: 100vh !important;
+    min-height: 100vh !important;
   }
   .main-title {
     font-size: 2rem;
@@ -157,7 +164,9 @@ a {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: fit-content;
     flex-grow: 1;
+    margin-block-end: 4rem;
   }
   .icons {
     margin-block-end: 1rem;

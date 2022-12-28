@@ -58,6 +58,7 @@ export default {
       this.currentSong.name = song.name;
       this.currentSong.audioFile = song.audioFile;
       this.currentSong.index = index;
+      this.$emit("setSong", this.currentSong.name);
     },
     restartSong() {
       this.currentSong.audioFile.currentTime = 0;
