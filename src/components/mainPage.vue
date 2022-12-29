@@ -31,11 +31,17 @@
 <script>
 import mainTitle from "./mainTitle.vue";
 import MediaPlayerDesktop from "./mediaPlayer/mediaPlayerDesktop.vue";
-import MediaPlayerPhone from './mediaPlayer/mediaPlayerPhone.vue';
+import MediaPlayerPhone from "./mediaPlayer/mediaPlayerPhone.vue";
 import PhotoCarousel from "./photoCarousel.vue";
 import VideoCarousel from "./videoCarousel.vue";
 export default {
-  components: { mainTitle, PhotoCarousel, VideoCarousel, MediaPlayerDesktop, MediaPlayerPhone },
+  components: {
+    mainTitle,
+    PhotoCarousel,
+    VideoCarousel,
+    MediaPlayerDesktop,
+    MediaPlayerPhone,
+  },
   name: "mainPage",
   data() {
     return {
@@ -131,6 +137,9 @@ export default {
   .media-item {
     width: 45%;
   }
+  .photo-carousel {
+    margin-block-end: 2rem;
+  }
 }
 .media-title {
   font-family: "helvetica";
@@ -171,5 +180,6 @@ a {
   .icons {
     margin-block-end: 1rem;
   }
+  
 }
 </style>
