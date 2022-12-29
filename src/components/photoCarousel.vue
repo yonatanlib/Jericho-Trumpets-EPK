@@ -6,7 +6,7 @@
         class="carousel"
         hide-delimiters
         interval="4000"
-        show-arrows-on-hover
+        :show-arrows-on-hover="isMobile"
       >
         <v-carousel-item
           class="carousel"
@@ -31,6 +31,11 @@ export default {
       required: true,
     },
   },
+  computed: {
+    isMobile() {
+      return window.innerWidth > 600; 
+    }
+  }
 };
 </script>
 

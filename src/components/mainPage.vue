@@ -149,7 +149,7 @@ a {
 <style>
 @media only screen and (max-width: 600px) {
   body {
-    padding: 1rem !important;
+    padding-inline: 1rem !important;
     background-color: black;
     height: 100vh !important;
   }

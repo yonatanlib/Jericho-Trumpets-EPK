@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "mediaControls",
-   data() {
+  data() {
     return {
       currentSong: {
         name: undefined,
@@ -33,12 +33,14 @@ export default {
     };
   },
   methods: {
-      getSongList() {
+    getSongList() {
       const songsFolder = require.context("../../assets/Songs");
       this.songArray = songsFolder.keys().map((songDir) => {
         let songName = songDir.split("/")[1];
-        songName = songName.split(".")[0];
-        const AudioFilePath = require("../../assets/Songs/" + songName + ".mp3");
+        songName = songName.replace(".mp3", '');
+        const AudioFilePath = require("../../assets/Songs/" +
+          songName +
+          ".mp3");
         return {
           name: songName,
           audioFile: new Audio(AudioFilePath),
@@ -85,7 +87,7 @@ export default {
       const prevSongIndex = this.currentSong.index - 1;
       if (prevSongIndex < 0) {
         this.restartSong();
-        return; 
+        return;
       }
       this.setCurrentSong(this.songArray[prevSongIndex], prevSongIndex);
       this.restartSong();
@@ -95,15 +97,18 @@ export default {
   created() {
     this.getSongList();
   },
-  
 };
 </script>
 
 <style>
 .controls {
-  width: 10rem;
-  margin-inline-end: 1rem;
   display: flex;
   gap: 1rem;
+}
+@media only screen and (min-width: 600px) {
+  .controls {
+    width: 10rem;
+    margin-inline-end: 1rem;
+  }
 }
 </style>
