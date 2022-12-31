@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style>
+@import url("@/assets/Fonts/NimbusSans/NimbusSan.css");
+@import url("@/assets/Fonts/Cartesius small caps/Cartesius small caps.css");
 p {
   color: white !important;
 }

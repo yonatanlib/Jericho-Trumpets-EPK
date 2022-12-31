@@ -22,9 +22,9 @@
       />
       <video-carousel class="media-item" />
     </div>
+    <bio />
     <media-player-desktop v-if="!isMobile" class="media-player" />
     <media-player-phone v-else />
-    <!-- <bio /> -->
   </div>
 </template>
 
@@ -34,6 +34,7 @@ import MediaPlayerDesktop from "./mediaPlayer/mediaPlayerDesktop.vue";
 import MediaPlayerPhone from "./mediaPlayer/mediaPlayerPhone.vue";
 import PhotoCarousel from "./photoCarousel.vue";
 import VideoCarousel from "./videoCarousel.vue";
+import Bio from './Bio.vue'; 
 export default {
   components: {
     mainTitle,
@@ -41,6 +42,7 @@ export default {
     VideoCarousel,
     MediaPlayerDesktop,
     MediaPlayerPhone,
+    Bio
   },
   name: "mainPage",
   data() {
@@ -132,13 +134,10 @@ export default {
     width: 80%;
     height: fit-content;
     justify-content: space-between;
-    flex-grow: 1;
+    margin-block-end: 1rem;
   }
   .media-item {
     width: 45%;
-  }
-  .photo-carousel {
-    margin-block-end: 2rem;
   }
 }
 .media-title {
