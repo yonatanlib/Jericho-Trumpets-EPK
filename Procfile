@@ -1,1 +1,1 @@
-web: gunicorn
+web: bin/start-nginx-solo
