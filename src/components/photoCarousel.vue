@@ -7,8 +7,10 @@
         hide-delimiters
         interval="4000"
         :show-arrows-on-hover="isMobile"
+        
       >
-        <v-carousel-item
+        <v-carousel-item 
+          eager
           class="carousel"
           v-for="photoName in photosList"
           :key="photoName"
@@ -16,6 +18,8 @@
           <img
             class="img"
             :src="require('@/assets/carousel-photos/' + photoName)"
+            loading="eager"
+            @load="handleLoaded"
           />
         </v-carousel-item>
       </v-carousel>
@@ -30,6 +34,11 @@ export default {
     photosList: {
       required: true,
     },
+  },
+  methods: {
+    handleLoaded() {
+      console.log("loaded")
+    }
   },
   computed: {
     isMobile() {
@@ -48,6 +57,7 @@ export default {
   width: 100%;
 }
 .carousel {
+  min-height: 10rem;
   height: 100% !important;
   width: 100% !important;
   object-fit: cover;
