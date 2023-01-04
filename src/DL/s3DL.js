@@ -11,7 +11,7 @@ const s3 = new AWS.S3({
   params: { Bucket: albumBucketName },
 });
 
-async function getPictures() {
+export async function getPictures() {
   const result = await s3
   .listObjectsV2({ Prefix: "carousel-photos/" })
   .promise();
