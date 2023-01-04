@@ -16,10 +16,7 @@
       </v-tooltip>
     </div>
     <div class="media-div">
-      <photo-carousel
-        class="media-item photo-carousel"
-        :photosList="photosList"
-      />
+      <photo-carousel class="media-item photo-carousel" @loaded="handleLoaded"/>
       <video-carousel class="media-item" />
     </div>
     <bio />
@@ -34,7 +31,8 @@ import MediaPlayerDesktop from "./mediaPlayer/mediaPlayerDesktop.vue";
 import MediaPlayerPhone from "./mediaPlayer/mediaPlayerPhone.vue";
 import PhotoCarousel from "./photoCarousel.vue";
 import VideoCarousel from "./videoCarousel.vue";
-import Bio from './Bio.vue'; 
+import Bio from "./Bio.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     mainTitle,
@@ -42,12 +40,12 @@ export default {
     VideoCarousel,
     MediaPlayerDesktop,
     MediaPlayerPhone,
-    Bio
+    Bio,
   },
   name: "mainPage",
   data() {
     return {
-      photosList: [],
+      firstLoad: true,
       icons: [
         {
           name: "mdi-instagram",
@@ -78,13 +76,13 @@ export default {
     };
   },
   methods: {
-    getPhotosNames() {
-      const result = require.context("@/assets/carousel-photos");
-      this.photosList = result.keys();
-      this.photosList = this.photosList.map((element) => {
-        return element.split("/")[1];
-      });
-    },
+    // getPhotosNames() {
+    //   const result = require.context("@/assets/carousel-photos");
+    //   this.photosList = result.keys();
+    //   this.photosList = this.photosList.map((element) => {
+    //     return element.split("/")[1];
+    //   });
+    // },
     getHeight() {
       const photoCarouselElement = document.querySelector(
         ".photo-carousel-div"
@@ -92,15 +90,24 @@ export default {
       const height = photoCarouselElement.offsetHeight;
       document.querySelector(".video-div").style.height = `${height}px`;
     },
+    handleLoaded() {
+        if(this.firstLoad) {
+          this.getHeight()
+          this.firstLoad = false;
+        }
+    }
   },
   computed: {
+    ...mapGetters(["getAppLoader"]),
     isMobile() {
       return window.innerWidth < 600;
     },
+    appLoader() {
+      return this.getAppLoader;
+    },
   },
   created() {
-    this.getPhotosNames();
-    window.onload = this.getHeight;
+    // window.onload = this.getHeight;
     addEventListener("resize", () => {
       this.getHeight();
     });
@@ -179,6 +186,5 @@ a {
   .icons {
     margin-block-end: 1rem;
   }
-  
 }
 </style>

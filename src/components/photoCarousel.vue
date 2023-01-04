@@ -7,18 +7,17 @@
         hide-delimiters
         interval="4000"
         :show-arrows-on-hover="isMobile"
-        
       >
-        <v-carousel-item 
+        <v-carousel-item
           eager
           class="carousel"
           v-for="photoName in photosList"
           :key="photoName"
         >
-          <img
+          <v-img
+            eager
             class="img"
-            :src="require('@/assets/carousel-photos/' + photoName)"
-            loading="eager"
+            :src="photoName"
             @load="handleLoaded"
           />
         </v-carousel-item>
@@ -28,23 +27,23 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "photoCarousel",
-  props: {
-    photosList: {
-      required: true,
-    },
-  },
   methods: {
     handleLoaded() {
-      console.log("loaded")
-    }
+      this.$emit("loaded");
+    },
   },
   computed: {
+    ...mapGetters(["getPictures"]),
     isMobile() {
-      return window.innerWidth > 600; 
-    }
-  }
+      return window.innerWidth > 600;
+    },
+    photosList() {
+      return this.getPictures;
+    },
+  },
 };
 </script>
 

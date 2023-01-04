@@ -1,10 +1,8 @@
 const AWS = require("aws-sdk");
-const dotenv = require("dotenv");
-dotenv.config();
-const albumBucketName = process.env.ALBUM_NAME;
+const albumBucketName = process.env.VUE_APP_ALBUM_NAME;
 AWS.config.region = "eu-west-2";
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: process.env.IDENTITY_POL_ID,
+  IdentityPoolId: process.env.VUE_APP_IDENTITY_POL_ID,
 });
 const s3 = new AWS.S3({
   apiVersion: "2006-03-01",

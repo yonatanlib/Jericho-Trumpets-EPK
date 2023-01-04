@@ -1,25 +1,29 @@
-import { getPictures } from '@/DL/s3DL'
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import mainPage from '../components/mainPage.vue'
+import { getPictures } from "@/DL/s3DL";
+import store from "@/store";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import mainPage from "../components/mainPage.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     component: mainPage,
     beforeEnter: async () => {
-        const pictures = await getPictures();
-    }
+      store.commit("setAppLoader", true);
+      const pictures = await getPictures();
+      store.commit("setPictures", pictures);
+      store.commit("setAppLoader", false);
+    },
   },
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
