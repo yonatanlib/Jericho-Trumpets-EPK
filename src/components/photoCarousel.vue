@@ -7,15 +7,15 @@
         hide-delimiters
         interval="4000"
         :show-arrows-on-hover="isMobile"
-        
       >
-        <v-carousel-item 
+        <v-carousel-item
           eager
           class="carousel"
           v-for="photoName in photosList"
           :key="photoName"
         >
-          <img
+          <v-img
+            eager
             class="img"
             :src="require('@/assets/carousel-photos/' + photoName)"
             loading="eager"
@@ -37,14 +37,14 @@ export default {
   },
   methods: {
     handleLoaded() {
-      console.log("loaded")
-    }
+      console.log("loaded");
+    },
   },
   computed: {
     isMobile() {
-      return window.innerWidth > 600; 
-    }
-  }
+      return window.innerWidth > 600;
+    },
+  },
 };
 </script>
 
