@@ -50,7 +50,7 @@ export default {
 
 <style>
 .photo-carousel-div {
-  padding: 1rem;
+  padding: 1.01rem;
   border: 1px solid white;
 }
 .img {
