@@ -1,4 +1,6 @@
 const AWS = require("aws-sdk");
+// const dotenv = require("dotenv");
+// dotenv.config();
 const albumBucketName = process.env.VUE_APP_ALBUM_NAME;
 AWS.config.region = "eu-west-2";
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -11,27 +13,30 @@ const s3 = new AWS.S3({
 
 export async function getPictures() {
   const result = await s3
-  .listObjectsV2({ Prefix: "carousel-photos/" })
-  .promise();
+    .listObjectsV2({ Prefix: "carousel-photos/" })
+    .promise();
   if (!result.Contents) return;
-  let promises = [];
+    let imgsUrls= [];
   result.Contents.forEach((item) => {
-    promises.push(
-      s3.getObject({ Bucket: albumBucketName, Key: item.Key }).promise()
-    );
+    const url = s3.getSignedUrl("getObject", {
+      Bucket: albumBucketName,
+      Key: item.Key,
+      Expires: 15*60
+    });
+    imgsUrls.push(url); 
   });
-  let promiseResult = [];
-  try {
-    promiseResult = await Promise.all(promises);
-  } catch (err) {
-    console.error(err);
-    return;
-  }
-  let imgArray = [];
-  promiseResult.forEach((element) => {
-    const imgBase64 = element.Body.toString("base64");
-    imgArray.push(`data:image/png;base64, ${imgBase64}`);
-  });
-  return imgArray;
+  //   let promiseResult = [];
+  //   try {
+  //     promiseResult = await Promise.all(promises);
+  //   } catch (err) {
+  //     console.error(err);
+  //     return;
+  //   }
+  //   let imgArray = [];
+  //   promiseResult.forEach((element) => {
+  //     const imgBase64 = element.Body.toString("base64");
+  //     imgArray.push(`data:image/png;base64, ${imgBase64}`);
+  //   });
+  return imgsUrls;
 }
-getPictures();
+

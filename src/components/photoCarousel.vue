@@ -11,13 +11,13 @@
         <v-carousel-item
           eager
           class="carousel"
-          v-for="photoName in photosList"
-          :key="photoName"
+          v-for="photoUrl in photosList"
+          :key="photoUrl"
         >
           <v-img
             eager
             class="img"
-            :src="photoName"
+            :src="photoUrl"
             @load="handleLoaded"
           />
         </v-carousel-item>
