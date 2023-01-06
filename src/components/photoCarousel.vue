@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
   <div class="carousel-wrapper">
     <p class="media-title">Photos</p>
@@ -14,12 +15,7 @@
           v-for="photoUrl in photosList"
           :key="photoUrl"
         >
-          <v-img
-            eager
-            class="img"
-            :src="photoUrl"
-            @load="handleLoaded"
-          />
+          <v-img eager class="img" :src="photoUrl" @load="handleLoaded" />
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -53,7 +49,10 @@ export default {
   border: 1px solid white;
 }
 .img {
-  width: 100%;
+  width: 100% !important;
+}
+.v-responsive__content {
+  width: 40% !important;
 }
 .carousel {
   min-height: 10rem;

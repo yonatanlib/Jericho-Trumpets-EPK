@@ -13,7 +13,7 @@ const s3 = new AWS.S3({
 
 export async function getPictures() {
   const result = await s3
-    .listObjectsV2({ Prefix: "carousel-photos/" })
+    .listObjectsV2({ Prefix: "compresed/" })
     .promise();
   if (!result.Contents) return;
     let imgsUrls= [];
