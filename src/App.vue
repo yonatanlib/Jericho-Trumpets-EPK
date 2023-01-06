@@ -1,18 +1,27 @@
 <template>
   <v-app id="app">
-    <main-page />
+    <app-loader v-show="showLoader" />
+    <main-page v-show="!showLoader" />
   </v-app>
 </template>
 
 <script>
 import mainPage from "./components/mainPage.vue";
+import AppLoader from './components/AppLoader.vue'
+import { mapGetters } from 'vuex';
 
 export default {
   name: "App",
-  components: { mainPage },
+  components: { mainPage, AppLoader },
   data: () => ({
     //
   }),
+  computed: {
+    ...mapGetters(['getAppLoader']),
+    showLoader() {
+      return this.getAppLoader
+    }
+  }
 };
 </script>
 
