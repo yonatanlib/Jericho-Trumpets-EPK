@@ -91,7 +91,7 @@ export default {
       document.querySelector(".video-div .carousel").style.cssText = `height:${height}px !important;`;
     },
     handleLoaded() {
-        if(this.firstLoad) {
+        if(this.firstLoad && !this.isMobile) {
           this.getHeight()
           this.firstLoad = false;
         }
