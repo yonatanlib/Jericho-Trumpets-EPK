@@ -7,7 +7,7 @@
         class="carousel"
         hide-delimiters
         interval="4000"
-        :show-arrows-on-hover="isMobile"
+        :show-arrows-on-hover="!isMobile"
       >
         <v-carousel-item
           eager
@@ -34,13 +34,14 @@ export default {
   name: "photoCarousel",
   methods: {
     handleLoaded() {
+      console.log("here");
       this.$emit("loaded");
     },
   },
   computed: {
     ...mapGetters(["getPictures"]),
     isMobile() {
-      return window.innerWidth > 600;
+      return window.innerWidth < 600;
     },
     photosList() {
       return this.getPictures;

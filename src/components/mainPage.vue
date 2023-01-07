@@ -88,7 +88,7 @@ export default {
         ".photo-carousel-div"
       );
       const height = photoCarouselElement.offsetHeight;
-      document.querySelector(".video-div").style.height = `${height}px`;
+      document.querySelector(".video-div .carousel").style.cssText = `height:${height}px !important;`;
     },
     handleLoaded() {
         if(this.firstLoad) {
