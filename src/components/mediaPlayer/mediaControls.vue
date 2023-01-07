@@ -34,11 +34,11 @@ export default {
   },
   methods: {
     getSongList() {
-      const songsFolder = require.context("../../assets/Songs");
+      const songsFolder = require.context("../../assets/media");
       this.songArray = songsFolder.keys().map((songDir) => {
         let songName = songDir.split("/")[1];
         songName = songName.replace(".mp3", '');
-        const AudioFilePath = require("../../assets/Songs/" +
+        const AudioFilePath = require("../../assets/media/" +
           songName +
           ".mp3");
         return {

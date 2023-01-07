@@ -34,7 +34,6 @@ export default {
   name: "photoCarousel",
   methods: {
     handleLoaded() {
-      console.log("here");
       this.$emit("loaded");
     },
   },
