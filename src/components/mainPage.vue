@@ -180,6 +180,7 @@ a {
     flex-direction: column;
     gap: 1rem;
     height: fit-content;
+    width: 100%;
     flex-grow: 1;
     margin-block-end: 4rem;
   }

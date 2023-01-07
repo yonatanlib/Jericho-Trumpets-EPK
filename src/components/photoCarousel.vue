@@ -12,10 +12,16 @@
         <v-carousel-item
           eager
           class="carousel"
-          v-for="photoUrl in photosList"
-          :key="photoUrl"
+          v-for="photo in photosList"
+          :key="photo.name"
         >
-          <v-img eager class="img" :src="photoUrl" @load="handleLoaded" />
+          <v-img
+            eager
+            :lazy-src="require(`@/assets/images/previews/${photo.name}`)"
+            class="img"
+            :src="photo.url"
+            @load="handleLoaded"
+          />
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -52,7 +58,7 @@ export default {
   width: 100% !important;
 }
 .v-responsive__content {
-  width: 40% !important;
+  width: 100% !important;
 }
 .carousel {
   min-height: 10rem;

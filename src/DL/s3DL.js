@@ -16,27 +16,16 @@ export async function getPictures() {
     .listObjectsV2({ Prefix: "compresed/" })
     .promise();
   if (!result.Contents) return;
-    let imgsUrls= [];
+    let imgsList= [];
   result.Contents.forEach((item) => {
     const url = s3.getSignedUrl("getObject", {
       Bucket: albumBucketName,
       Key: item.Key,
       Expires: 15*60
     });
-    imgsUrls.push(url); 
+    const name = item.Key.split("/")[1];
+    imgsList.push({url, name}); 
   });
-  //   let promiseResult = [];
-  //   try {
-  //     promiseResult = await Promise.all(promises);
-  //   } catch (err) {
-  //     console.error(err);
-  //     return;
-  //   }
-  //   let imgArray = [];
-  //   promiseResult.forEach((element) => {
-  //     const imgBase64 = element.Body.toString("base64");
-  //     imgArray.push(`data:image/png;base64, ${imgBase64}`);
-  //   });
-  return imgsUrls;
+  return imgsList;
 }
 
