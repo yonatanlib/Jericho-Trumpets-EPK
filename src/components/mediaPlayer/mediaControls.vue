@@ -49,6 +49,7 @@ export default {
       this.setCurrentSong(this.songArray[0], 0);
     },
     playSong() {
+      console.log(this.currentSong);
       this.currentSong.audioFile.play();
       this.songStartTime = new Date();
       this.playing = true;
