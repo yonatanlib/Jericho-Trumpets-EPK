@@ -49,8 +49,7 @@ export default {
       this.setCurrentSong(this.songArray[0], 0);
     },
     playSong() {
-      const result = this.currentSong.audioFile.play()
-      result.then(() => console.log("Song Played Successfully")).catch(console.log);
+      this.currentSong.audioFile.play()
       this.songStartTime = new Date();
       this.playing = true;
     },
