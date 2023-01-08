@@ -76,14 +76,8 @@ export default {
     };
   },
   methods: {
-    // getPhotosNames() {
-    //   const result = require.context("@/assets/carousel-photos");
-    //   this.photosList = result.keys();
-    //   this.photosList = this.photosList.map((element) => {
-    //     return element.split("/")[1];
-    //   });
-    // },
     getHeight() {
+      if(this.isMobile) return;
       const photoCarouselElement = document.querySelector(
         ".photo-carousel-div"
       );
@@ -91,7 +85,7 @@ export default {
       document.querySelector(".video-div .carousel").style.cssText = `height:${height}px !important;`;
     },
     handleLoaded() {
-        if(this.firstLoad && !this.isMobile) {
+        if(this.firstLoad) {
           this.getHeight()
           this.firstLoad = false;
         }
@@ -107,7 +101,6 @@ export default {
     },
   },
   created() {
-    // window.onload = this.getHeight;
     addEventListener("resize", () => {
       this.getHeight();
     });
@@ -131,7 +124,6 @@ export default {
   align-items: center;
 }
 .icons {
-  /* margin-block-end: 2rem; */
   display: flex;
   gap: 0.5rem;
 }
