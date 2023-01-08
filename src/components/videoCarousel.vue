@@ -9,7 +9,6 @@
     >
       <v-carousel-item eager v-for="link of links" :key="link" class="carousel-item">
         <iframe
-          class="iframe-video"
           width="100%"
           height="100%"
           :src="link"

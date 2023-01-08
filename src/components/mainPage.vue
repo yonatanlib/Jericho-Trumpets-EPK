@@ -180,4 +180,9 @@ a {
     margin-block-end: 1rem;
   }
 }
+@media only screen and (max-width: 360px) {
+  .main-title {
+    font-size: 1.75rem !important; 
+  }
+}
 </style>
