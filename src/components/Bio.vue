@@ -3,13 +3,13 @@
   <div class="bio-div">
     <p class="bio">
       Jericho Trumpets are a young and kicking post-punk band, founded by 4 high
-      school friends from Tel-Aviv in 2019. Their edgy guitars, heavy drumming, 
+      school friends from Tel-Aviv in 2019. Their edgy guitars, heavy drumming,
       And melancholy melodies, creates a mixture of uncompromising and raw
       melodramatic sound. Along with charismatic vocals, preaching about the
       love and hate relationship with their hometown and its society; they are a
-      rebellious anthem to all lost and broken hearted. The Trumpets are looking
-      to put out their debut album in the beginning of 2023, and heading their
-      first UK tour a couple of months later the year.
+      rebellious anthem to all lost and broken hearted. The Trumpets released
+      their debut album - “Good Morning Afternoons” in February 2023, and going
+      on their first EU/UK tour in June later the year.
     </p>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
   /* line-height: 2rem; */
   flex-grow: 1;
 }
-@media only screen and (max-width: 600px) { 
+@media only screen and (max-width: 600px) {
   .bio-div {
     width: 95%;
     text-align: justify;
